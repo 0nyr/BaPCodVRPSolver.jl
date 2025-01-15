@@ -26,6 +26,7 @@
             export JULIA_PROJECT="turing"
             export JULIA_BINDIR=${julia_15}/bin
             export JULIA_EDITOR="code"
+            alias julia=${julia_15}/bin/julia
             echo "Julia 1.5 Nix shell loaded."
           '';
         };
