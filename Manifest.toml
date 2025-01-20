@@ -1,5 +1,11 @@
 # This file is machine-generated - editing it directly is not advised
 
+[[ArgParse]]
+deps = ["Logging", "TextWrap"]
+git-tree-sha1 = "22cf435ac22956a7b45b0168abbc871176e7eecc"
+uuid = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
+version = "1.2.0"
+
 [[ArnoldiMethod]]
 deps = ["LinearAlgebra", "Random", "StaticArrays"]
 git-tree-sha1 = "f87e559f87a45bece9c9ed97458d3afe98b1ebb9"
@@ -268,6 +274,11 @@ version = "1.0.3"
 [[Test]]
 deps = ["Distributed", "InteractiveUtils", "Logging", "Random"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[[TextWrap]]
+git-tree-sha1 = "43044b737fa70bc12f6105061d3da38f881a3e3c"
+uuid = "b718987f-49a8-5099-9789-dcd902bef87d"
+version = "1.0.2"
 
 [[UUIDs]]
 deps = ["Random", "SHA"]

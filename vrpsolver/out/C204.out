@@ -1,0 +1,9 @@
+ERROR: LoadError: ArgumentError: Package ArgParse not found in current path:
+- Run `import Pkg; Pkg.add("ArgParse")` to install the ArgParse package.
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:893
+ [2] include(::Function, ::Module, ::String) at /nix/store/s5ydxxzjjahgq3jj6jissi2m5qgwh1hw-julia-1.5.4/lib/julia/sys.so:? (repeats 2 times)
+ [3] exec_options(::Base.JLOptions) at /nix/store/s5ydxxzjjahgq3jj6jissi2m5qgwh1hw-julia-1.5.4/lib/julia/sys.so:?
+ [4] _start() at /nix/store/s5ydxxzjjahgq3jj6jissi2m5qgwh1hw-julia-1.5.4/lib/julia/sys.so:?
+in expression starting at /home/onyr/code/phd/BaPCodVRPSolver.jl/vrpsolver/src/run.jl:1

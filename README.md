@@ -88,15 +88,33 @@ julia src/run.jl data/X/X-n101-k25.vrp -u 27591.1
 
 ## Working in NixOs
 
-##### When running the project for the first time
+##### Installation
+
+You need to edit `flake.nix` to update paths for the following variables:
+```sh
+export LD_LIBRARY_PATH=/home/onyr/cplex1210/cplex/bin/x86-64_linux:$LD_LIBRARY_PATH
+export CPLEX_ROOT=/home/onyr/cplex1210
+export BAPCOD_ROOT=/home/onyr/bapcod/bapcod-0.82.8
+export BOOST_ROOT=/home/onyr/bapcod/bapcod-0.82.8/Tools/boost_1_76_0/build
+export BAPCOD_RCSP_LIB=/home/onyr/bapcod/bapcod-0.82.8/build/Bapcod/libbapcod-shared.so
+```
+
+That requires quite a lot of manual work to install CPLEX 12.10 and BaPCod 0.82.8 but the current flake holds the necessary available dependencies, so you can reuse its shell for installing BaPCod. For CPLEX, the easiest way is to reboot on a more traditional distribution like Debian and install it from there, then reboot on NixOs and just modify the variable LD_LIBRARY_PATH where you installed it. Indeed, this requires a multi-distro system with shared `home/` partition. But a simpler copy/past of installed files would also probably work as well.
+
+##### Julia commands when running the project for the first time
+
 Activate dev shell:
 ```
 nix develop
 ```
 
-The load Julia REPL
+Then load Julia REPL, download dependencies and activate Julia environment.
 ```
 julia
 ] activate .
 resolve
 ```
+
+### Run 
+
+`julia vrpsolver/src/run.jl vrpsolver/data/100/C204.txt --cfg vrpsolver/config/VRPTW_set_2.cfg`: run VrpSolver for a given Solomon instance.
