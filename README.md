@@ -85,3 +85,18 @@ For example, the [CVRP demo](https://vrpsolver.math.u-bordeaux.fr/cvrpdemo.zip) 
 ```
 julia src/run.jl data/X/X-n101-k25.vrp -u 27591.1
 ```
+
+## Working in NixOs
+
+##### When running the project for the first time
+Activate dev shell:
+```
+nix develop
+```
+
+The load Julia REPL
+```
+julia
+] activate .
+resolve
+```

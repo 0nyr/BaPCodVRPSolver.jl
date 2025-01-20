@@ -39,7 +39,7 @@
 
           shellHook = ''
             export JULIA_NUM_THREADS="auto"
-            export JULIA_PROJECT="turing"
+            export JULIA_PROJECT="."
             export JULIA_BINDIR=${julia_15}/bin
             export JULIA_EDITOR="code"
             alias julia=${julia_15}/bin/julia
@@ -47,6 +47,7 @@
             export CPLEX_ROOT=/home/onyr/cplex1210
             export BAPCOD_ROOT=/home/onyr/bapcod/bapcod-0.82.8
             export BOOST_ROOT=/home/onyr/bapcod/bapcod-0.82.8/Tools/boost_1_76_0/build
+            export BAPCOD_RCSP_LIB=/home/onyr/bapcod/bapcod-0.82.8/build/Bapcod/libbapcod-shared.so
             echo "Julia 1.5 Nix shell loaded."
           '';
         };
