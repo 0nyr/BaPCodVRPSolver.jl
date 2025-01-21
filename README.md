@@ -118,3 +118,42 @@ resolve
 ### Run 
 
 `julia vrpsolver/src/run.jl vrpsolver/data/100/C204.txt --cfg vrpsolver/config/VRPTW_set_2.cfg`: run VrpSolver for a given Solomon instance.
+
+Broken, I get error:
+```
+ ❮onyr ★ nixos❯ ❮BaPCodVRPSolver.jl❯❯ julia vrpsolver/src/run.jl vrpsolver/data/100/C204.txt --cfg vrpsolver/config/VRPTW_set_2.cfg
+Application parameters:
+  batch  =>  nothing
+  tikz  =>  nothing
+  instance  =>  "vrpsolver/data/100/C204.txt"
+  out  =>  nothing
+  nosolve  =>  false
+  ub  =>  1.0e7
+  sol  =>  nothing
+  cfg  =>  "vrpsolver/config/VRPTW_set_2.cfg"
+  enable_cap_res  =>  false
+ solve 
+ERROR: LoadError: could not load library "/home/onyr/bapcod/bapcod-0.82.8/build/Bapcod/libbapcod-shared.so"
+/nix/store/26v9009yj6yyz60261523pzvbj2vv4jc-gfortran-9.3.0-lib/lib/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /home/onyr/bapcod/bapcod-0.82.8/build/Bapcod/libbapcod-shared.so)
+Stacktrace:
+ [1] macro expansion at /home/onyr/code/phd/BaPCodVRPSolver.jl/src/bapcod/bc_common.jl:12 [inlined]
+ [2] new!(::String, ::Bool, ::Bool, ::Bool, ::Int32, ::Array{String,1}) at /home/onyr/code/phd/BaPCodVRPSolver.jl/src/bapcod/wrapper/model.jl:19
+ [3] BaPCodVRPSolver.BaPCod.BcModel(; param_file::String, print_param::Bool, integer_objective::Bool, baptreedot_file::String, user_params::String) at /home/onyr/code/phd/BaPCodVRPSolver.jl/src/bapcod/bc_model.jl:20
+ [4] BaPCodVRPSolver.BaPCod.BcMathProgModel(::BaPCodVRPSolver.BaPCod.BaPCodSolver) at /home/onyr/code/phd/BaPCodVRPSolver.jl/src/bapcod/BaPCodSolverInterface.jl:132
+ [5] LinearQuadraticModel at /home/onyr/code/phd/BaPCodVRPSolver.jl/src/bapcod/BaPCodSolverInterface.jl:134 [inlined]
+ [6] build(::Model; suppress_warnings::Bool, relaxation::Bool, traits::JuMP.ProblemTraits) at /home/onyr/.julia/packages/JuMP/I7whV/src/solvers.jl:358
+ [7] solve(::Model; suppress_warnings::Bool, ignore_solve_hook::Bool, relaxation::Bool, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /home/onyr/.julia/packages/JuMP/I7whV/src/solvers.jl:168
+ [8] vrp_hook(::Model; suppress_warnings::Bool, relaxation::Bool, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /home/onyr/code/phd/BaPCodVRPSolver.jl/src/BaPCodVRPSolver.jl:2425
+ [9] solve(::Model; suppress_warnings::Bool, ignore_solve_hook::Bool, relaxation::Bool, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /home/onyr/.julia/packages/JuMP/I7whV/src/solvers.jl:151
+ [10] solve at /home/onyr/.julia/packages/JuMP/I7whV/src/solvers.jl:150 [inlined]
+ [11] optimize!(::VrpOptimizer) at /home/onyr/code/phd/BaPCodVRPSolver.jl/src/BaPCodVRPSolver.jl:1767
+ [12] run_vrptw(::Dict{String,Any}) at /home/onyr/code/phd/BaPCodVRPSolver.jl/vrpsolver/src/run.jl:61
+ [13] main(::Array{String,1}) at /home/onyr/code/phd/BaPCodVRPSolver.jl/vrpsolver/src/run.jl:101
+ [14] top-level scope at /home/onyr/code/phd/BaPCodVRPSolver.jl/vrpsolver/src/run.jl:108
+ [15] include(::Function, ::Module, ::String) at /nix/store/s5ydxxzjjahgq3jj6jissi2m5qgwh1hw-julia-1.5.4/lib/julia/sys.so:? (repeats 2 times)
+ [16] exec_options(::Base.JLOptions) at /nix/store/s5ydxxzjjahgq3jj6jissi2m5qgwh1hw-julia-1.5.4/lib/julia/sys.so:?
+ [17] _start() at /nix/store/s5ydxxzjjahgq3jj6jissi2m5qgwh1hw-julia-1.5.4/lib/julia/sys.so:?
+in expression starting at /home/onyr/code/phd/BaPCodVRPSolver.jl/vrpsolver/src/run.jl:105
+```
+
+I need to find a way to patch Julia 1.5.4 with a more modern version of libstdc++.so.6 but I'm really unsure of how to do that...  
